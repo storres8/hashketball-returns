@@ -1,10 +1,12 @@
 import React from 'react'
 import Team from './Team'
 
-const TeamList = ({ teams, selectPlayer }) => {
+import {connect} from 'react-redux'
 
-  const renderedTeams = teams.map(team => {
-    return <Team key={team.id} team={team} selectPlayer={selectPlayer} />
+const TeamList = (props) => {
+console.log("teamList", props)
+  const renderedTeams = props.teams.map(team => {
+    return <Team key={team.id} team={team} />
   })
 
   return (
@@ -14,4 +16,8 @@ const TeamList = ({ teams, selectPlayer }) => {
   )
 }
 
-export default TeamList
+const mapStateToProps = (state) =>({
+  teams: state.teams
+})
+
+export default connect(mapStateToProps)(TeamList)
